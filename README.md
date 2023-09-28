@@ -1,50 +1,54 @@
-# esbuild-plugin-vue-next
+# bun-plugin-vue-sfc
 
-building vue 3.x SFC files with esbuild.
+building vue 3.x SFC files with bun.
+
+
+this is a fork of <https://github.com/Bigfish8/esbuild-plugin-vue-next>
+
 
 # Quickstart
 
 - install
 
 ```
-npm install -D esbuild-plugin-vue-next
-// or
-yarn add -D esbuild-plugin-vue-next
+bun install bun-plugin-vue-sfc
+
 ```
 
 - use plugin
 
 ```js
-// build.js
-const { build } = require('esbuild')
-const pluginVue = require('esbuild-plugin-vue-next')
-
-build({
-    entryPoints: ['index.js'], // your entry file
-    bundle: true,
-    outfile: 'bundle.js',
-    plugins: [pluginVue()]
+// build..mjs
+import plugin from 'bun-plugin-vue-sfc'
+await Bun.build({
+ entrypoints: ['./src/App.vue'],
+  outdir: './build',
+  minify: true,
+  splitting: true,
+  target: 'browser',
+  plugins: [plugin()],
 })
+ 
 ```
 
-- run esbuild
+- run bun
 
 ```
-node build.js
+bun build.mjs
 ```
 
 ## Options
 
 ```js
 export interface Options {
-    // template
-    templateOptions?: Pick<SFCTemplateCompileOptions, 'compiler' | 'preprocessLang' | 'preprocessOptions' | 'compilerOptions' | 'transformAssetUrls'>
-
-    // script
-    scriptOptions?: Pick<SFCScriptCompileOptions, 'babelParserPlugins' | 'refSugar'>
-
-    // style
-    styleOptions?: Pick<SFCAsyncStyleCompileOptions, 'modulesOptions' | 'preprocessLang' | 'preprocessOptions' | 'postcssOptions' | 'postcssPlugins'>
+	isProduction?: boolean;
+	/**
+	 * @default 'browser'
+	 */
+	target: "browser" | "bun";
+	script?: Partial<Pick<SFCScriptCompileOptions, "babelParserPlugins" | "globalTypeFiles" | "defineModel" | "propsDestructure" | "fs" | "reactivityTransform" | "hoistStatic">>;
+	template?: Partial<Pick<SFCTemplateCompileOptions, "compiler" | "compilerOptions" | "preprocessOptions" | "preprocessLang" | "preprocessCustomRequire" | "transformAssetUrls" | "ssr">>;
+	style?: Pick<SFCAsyncStyleCompileOptions, "modulesOptions" | "preprocessLang" | "preprocessOptions" | "postcssOptions" | "postcssPlugins">;
 }
 
 ```

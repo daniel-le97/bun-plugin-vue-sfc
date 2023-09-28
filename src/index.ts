@@ -10,8 +10,8 @@ import { SFCTemplateCompileOptions, SFCScriptCompileOptions, SFCAsyncStyleCompil
 import { BunPlugin } from 'bun';
 
 export interface Options {
-    include?: string | RegExp | ( string | RegExp )[];
-    exclude?: string | RegExp | ( string | RegExp )[]
+    // include?: string | RegExp | ( string | RegExp )[];
+    // exclude?: string | RegExp | ( string | RegExp )[]
 
     isProduction?: boolean
     /**

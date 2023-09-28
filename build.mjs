@@ -8,4 +8,4 @@ const prod = await Bun.build({
   plugins: [dts()],
   external: ['vue']
 })
-console.log(prod);
+// console.log(prod);
