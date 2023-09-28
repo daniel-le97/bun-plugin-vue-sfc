@@ -5,6 +5,7 @@ building vue 3.x SFC files with bun.
 
 this is a fork of <https://github.com/Bigfish8/esbuild-plugin-vue-next>
 
+this plugin does not yet work as a bun runtime plugin
 
 # Quickstart
 
