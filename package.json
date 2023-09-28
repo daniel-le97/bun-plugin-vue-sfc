@@ -17,7 +17,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "bun playground/dev.ts",
-    "build": "bun build.mjs"
+    "build": "bun build.mjs",
+    "prepublishOnly": "bun run build",
+    "release": "bumpp && npm publish"
   },
   "keywords": [
     "bun",
@@ -27,12 +29,12 @@
   "devDependencies": {
     "@types/convert-source-map": "^1.5.2",
     "@vue/test-utils": "^2.4.1",
+    "bumpp": "^9.2.0",
     "bun-plugin-dts": "^0.2.1",
-    "vue": "^3.3.4",
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "vue": "^3.3.4"
   },
   "dependencies": {
-    "@babel/types": "^7.23.0",
     "convert-source-map": "^1.8.0"
   }
 }
