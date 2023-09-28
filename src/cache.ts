@@ -1,5 +1,5 @@
-import { SFCDescriptor } from '@vue/compiler-sfc'
-import hash from 'hash-sum'
+import { SFCDescriptor } from 'vue/compiler-sfc'
+
 
 const descriptorCache: Record<string, SFCDescriptor> = {}
 
@@ -18,7 +18,7 @@ export function getDesCache(filename: string) {
 const idCache: Record<string, string> = {}
 
 export function setId(filename: string) {
-    return (idCache[filename] = `data-v-${hash(filename)}`)
+    return (idCache[filename] = `data-v-${Bun.hash(filename)}`)
 }
 
 export function getId(filename: string) {

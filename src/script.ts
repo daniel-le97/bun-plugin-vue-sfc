@@ -1,19 +1,19 @@
-import { compileScript } from '@vue/compiler-sfc'
+import { compileScript } from 'vue/compiler-sfc'
 import { getDesCache, getId } from './cache'
-import { PartialMessage } from 'esbuild'
 import { Options } from './index'
 import { getTemplateOptions } from './template'
 import convert from 'convert-source-map'
 
 export function resolveScript(
     filename: string,
-    scriptOptions: Options['scriptOptions'] = {},
-    templateOptions: Options['templateOptions'] = {},
+    scriptOptions: Options['script'] = {},
+    templateOptions: Options['template'] = {},
     isProd: boolean,
-    sourcemap: boolean
+    sourcemap: boolean,
+    target: 'browser' | 'bun'
 ) {
     const descriptor = getDesCache(filename)
-    const error: PartialMessage[] = []
+    const error = []
     const { script, scriptSetup } = descriptor
     const isTs = (script && script.lang === 'ts') || (scriptSetup && scriptSetup.lang === 'ts')
 
@@ -32,9 +32,7 @@ export function resolveScript(
             sourceMap: sourcemap,
             inlineTemplate: true,
             babelParserPlugins: scriptOptions.babelParserPlugins,
-            refTransform: true,
-            refSugar: scriptOptions.refSugar,
-            templateOptions: descriptor.template ? getTemplateOptions(descriptor, templateOptions, isProd) : {}
+            templateOptions: descriptor.template ? getTemplateOptions(descriptor, templateOptions, isProd, target) : {}
         })
         code = res.content
         if (res.map) {

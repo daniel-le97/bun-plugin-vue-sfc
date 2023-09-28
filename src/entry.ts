@@ -1,9 +1,9 @@
-import { parse } from '@vue/compiler-sfc'
+import { parse } from 'vue/compiler-sfc'
 import { setDesCache } from './cache'
 import { convertErrors } from './util'
 import { setId } from './cache'
 
-export function loadEntry(source: string, filename: string, sourcemap: boolean) {
+export function loadEntry(source: string, filename: string, sourcemap: boolean, target: 'browser' | 'bun') {
     const { descriptor, errors } = parse(source, {
         sourceMap: sourcemap,
         filename
@@ -19,9 +19,12 @@ export function loadEntry(source: string, filename: string, sourcemap: boolean) 
     let templateBindCode = ''
     // scriptSetup inlineTemplate
     if (!descriptor.scriptSetup && descriptor.template) {
+        
+        const renderer = target === 'browser' ? 'render' : 'ssrRender'
+        // console.log(renderer);
         const templatePath = JSON.stringify(`${filename}?type=template`)
-        templateImportCode += `import { render } from ${templatePath}`
-        templateBindCode += `\nscript.render = render`
+        templateImportCode += `import { ${renderer} } from ${templatePath}`
+        templateBindCode += `\nscript.${renderer} = ${renderer}`
     }
 
     let styleImportCode = ''

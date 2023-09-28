@@ -1,13 +1,19 @@
 {
-    "include": ["src"],
+    "include": [
+        "."
+    ],
     "compilerOptions": {
         "strict": true,
         "outDir": "dist",
-        "rootDir": "src",
+        "moduleResolution": "Bundler",
+        // "rootDir": "src",
         "esModuleInterop": true,
         "declaration": true,
         "target": "esnext",
         "noUnusedLocals": true,
-        "module": "commonjs"
+        "module": "ESNext",
+        "types": [
+            "bun-types"
+        ]
     }
 }

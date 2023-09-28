@@ -1,12 +1,13 @@
-import { compileStyleAsync, SFCStyleCompileOptions } from '@vue/compiler-sfc'
-import { PartialMessage } from 'esbuild'
+import { compileStyleAsync, SFCStyleCompileOptions } from 'vue/compiler-sfc'
+// import { PartialMessage } from 'esbuild'
 import { getDesCache, getId } from './cache'
 import { Options } from './index'
-import convert from 'convert-source-map'
+// import convert from 'convert-source-map'
+// import { transpileTS } from './util.js';
 
 export async function resolveStyle(
     filename: string,
-    styleOptions: Options['styleOptions'] = {},
+    styleOptions: Options['style'] = {},
     index: number,
     isModule: boolean,
     moduleWithNameImport: boolean,
@@ -40,10 +41,10 @@ export async function resolveStyle(
         styleCode = res.code
     }
 
-    if (res.map && !moduleWithNameImport) {
-        styleCode += convert.fromObject(res.map).toComment({ multiline: true })
-    }
-    const errors: PartialMessage[] = res.errors.map(e => ({
+    // if (res.map && !moduleWithNameImport) {
+    //     styleCode += convert.fromObject(res.map).toComment({ multiline: true })
+    // }
+    const errors = res.errors.map(e => ({
         text: e.message
     }))
 

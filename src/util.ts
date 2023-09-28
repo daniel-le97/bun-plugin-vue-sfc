@@ -1,6 +1,6 @@
 import path from 'path'
-import { Message } from 'esbuild'
-import { parse } from '@vue/compiler-sfc'
+// import { Message } from 'esbuild'
+import { parse } from 'vue/compiler-sfc'
 
 export function resolvePath(filePath: string) {
     const [filename, query] = filePath.split('?', 2)
@@ -10,8 +10,8 @@ export function resolvePath(filePath: string) {
 
 type ParseErrors = ReturnType<typeof parse>['errors']
 export function convertErrors(errors: ParseErrors, filename: string) {
-    const convert = (e: ParseErrors[number]): Message => {
-        let location: Message['location'] = null
+    const convert = (e: ParseErrors[number]) => {
+        let location = null
         if ('loc' in e && Object.prototype.hasOwnProperty.call(e, 'loc')) {
             const start = e.loc!.start
             const lineText = e.loc!.source
@@ -38,8 +38,14 @@ export function convertErrors(errors: ParseErrors, filename: string) {
 
 export function validateDenpendency() {
     try {
-        require.resolve('@vue/compiler-sfc')
+        require.resolve('vue/compiler-sfc')
     } catch {
-        throw new Error('@vue/compiler-sfc has not been installed')
+        throw new Error('vue/compiler-sfc has not been installed')
     }
 }
+
+export const transpileTS = ( code: string, loader: 'ts' | 'js' = 'ts' ) => {
+    const transpiler = new Bun.Transpiler( { loader } );
+    const content = transpiler.transformSync( code );
+    return content;
+};

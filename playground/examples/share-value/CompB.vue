@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { msg } from './App.vue'
+import { msg } from './index.vue';
 export default {
     setup() {
         return {
