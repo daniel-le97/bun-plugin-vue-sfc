@@ -7,12 +7,12 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/daniel-97/bun-plugin-vue-sfc#readme",
+  "homepage": "https://github.com/daniel-le97/bun-plugin-vue-sfc#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daniel-97/bun-plugin-vue-sfc.git"
+    "url": "git+https://github.com/daniel-le97/bun-plugin-vue-sfc.git"
   },
-  "bugs": "https://github.com/daniel-97/bun-plugin-vue-sfc/issues",
+  "bugs": "https://github.com/daniel-le97/bun-plugin-vue-sfc/issues",
   "author": "Daniel le <daniel97.le@gmail.com>",
   "license": "MIT",
   "scripts": {
