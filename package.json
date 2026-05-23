@@ -29,7 +29,7 @@
   "devDependencies": {
     "@types/convert-source-map": "^1.5.2",
     "@vue/test-utils": "^2.4.1",
-    "bumpp": "^9.2.0",
+    "bumpp": "^11.0.0",
     "bun-plugin-dts": "^0.2.1",
     "bun-types": "latest",
     "vue": "^3.3.4"
