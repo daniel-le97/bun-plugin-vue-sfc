@@ -27,7 +27,7 @@
     "vue"
   ],
   "devDependencies": {
-    "@types/convert-source-map": "^1.5.2",
+    "@types/convert-source-map": "^2.0.0",
     "@vue/test-utils": "^2.4.1",
     "bumpp": "^9.2.0",
     "bun-plugin-dts": "^0.2.1",
@@ -35,6 +35,6 @@
     "vue": "^3.3.4"
   },
   "dependencies": {
-    "convert-source-map": "^1.8.0"
+    "convert-source-map": "^2.0.0"
   }
 }
